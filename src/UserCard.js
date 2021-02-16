@@ -1,7 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import { Card, CardContent, CardMedia, Avatar } from "@material-ui/core";
+import {
+  makeStyles,
+  Card,
+  CardContent,
+  CardMedia,
+  Avatar,
+  Typography,
+} from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
@@ -23,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 15,
   },
   cardContent: {
-    padding: theme.spacing(2, 2, 0.5, 2),
+    padding: theme.spacing(2, 2, 0, 2),
   },
 }));
 
