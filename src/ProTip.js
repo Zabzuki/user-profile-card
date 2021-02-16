@@ -1,35 +1,86 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
-import SvgIcon from '@material-ui/core/SvgIcon';
-import Typography from '@material-ui/core/Typography';
-
-function LightBulbIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z" />
-    </SvgIcon>
-  );
-}
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { Card, CardContent, CardMedia, Avatar } from "@material-ui/core";
+import PhoneIcon from "@material-ui/icons/Phone";
+import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: theme.spacing(6, 0, 3),
+  text: {
+    margin: theme.spacing(0, 0, 0.5),
   },
-  lightBulb: {
-    verticalAlign: 'middle',
+  avatar: {
+    verticalAlign: "middle",
     marginRight: theme.spacing(1),
+  },
+  large: {
+    width: theme.spacing(12),
+    height: theme.spacing(12),
+    margin: theme.spacing(2, 2, 0),
+  },
+  card: {
+    borderRadius: 15,
+  },
+  cardContent: {
+    padding: theme.spacing(2, 2, 0.5, 2),
   },
 }));
 
 export default function ProTip() {
   const classes = useStyles();
   return (
-    <Typography className={classes.root} color="textSecondary">
-      <LightBulbIcon className={classes.lightBulb} />
-      Pro tip: See more{' '}
-      <Link href="https://material-ui.com/getting-started/templates/">templates</Link> on the
-      Material-UI documentation.
-    </Typography>
+    <div align="center">
+      <Card
+        variant="outlined"
+        className={classes.card}
+        style={{ display: "inline-block" }}
+      >
+        <CardMedia align="center">
+          <Avatar
+            alt="Remy Sharp"
+            src="/static/images/avatar/1.jpg"
+            className={classes.large}
+          />
+        </CardMedia>
+        <CardContent className={classes.cardContent}>
+          <Typography
+            className={classes.text}
+            color="textSecondary"
+            variant="h6"
+            align="center"
+          >
+            firstName lastName
+          </Typography>
+          <Typography
+            className={classes.text}
+            color="textSecondary"
+            variant="subtitle1"
+            align="center"
+          >
+            <AlternateEmailIcon className={classes.avatar} fontSize="small" />
+            example@example.com
+          </Typography>{" "}
+          <Typography
+            className={classes.text}
+            color="textSecondary"
+            variant="subtitle1"
+            align="center"
+          >
+            <PhoneIcon className={classes.avatar} fontSize="small" />
+            +306999999999
+          </Typography>{" "}
+          <Typography
+            className={classes.text}
+            color="textSecondary"
+            variant="subtitle1"
+            align="center"
+          >
+            <LocationOnIcon className={classes.avatar} fontSize="small" />
+            Florina, Greece
+          </Typography>{" "}
+        </CardContent>
+      </Card>
+    </div>
   );
 }
