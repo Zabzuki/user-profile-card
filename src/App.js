@@ -1,20 +1,29 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import UserCard from "./UserCard";
-import Paper from "@material-ui/core/Paper";
+import React, { useEffect, useState } from "react";
+import { Box, makeStyles, Container, ThemeProvider } from "@material-ui/core";
+import UserCardManager from "./UserCardManager";
+import { SLIDE_INFO } from "./constants";
+//import classes from "*.module.css";
 
-export default function App() {
+const useStyles = makeStyles(() => ({
+  app: {
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+}));
+
+export default function App(props) {
+  //const { backgroundColor, title } = props.content;
+  const [index, setIndex] = useState(0);
+  const content = SLIDE_INFO[3];
+  const classes = useStyles();
+  //const content = SLIDE_INFO[index];
+
   return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Paper variant="outlined">
-          <Typography variant="h4" component="h1" gutterBottom align="center">
-            User Card{" "}
-          </Typography>
-          <UserCard />
-        </Paper>
+    <Container maxWidth="lg">
+      <Box my={4} className={classes.app}>
+        <UserCardManager content={{ title: "Slide 1" }} content={content} />
       </Box>
     </Container>
   );

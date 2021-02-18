@@ -6,6 +6,7 @@ import {
   CardMedia,
   Avatar,
   Typography,
+  Box,
 } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
@@ -32,60 +33,59 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProTip() {
+export default function UserCard() {
   const classes = useStyles();
+
   return (
-    <div align="center">
-      <Card
-        variant="outlined"
-        className={classes.card}
-        style={{ display: "inline-block" }}
-      >
-        <CardMedia align="center">
-          <Avatar
-            alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
-            className={classes.large}
-          />
-        </CardMedia>
-        <CardContent className={classes.cardContent}>
-          <Typography
-            className={classes.text}
-            color="textSecondary"
-            variant="h6"
-            align="center"
-          >
-            firstName lastName
-          </Typography>
-          <Typography
-            className={classes.text}
-            color="textSecondary"
-            variant="subtitle1"
-            align="center"
-          >
-            <AlternateEmailIcon className={classes.avatar} fontSize="small" />
-            example@example.com
-          </Typography>{" "}
-          <Typography
-            className={classes.text}
-            color="textSecondary"
-            variant="subtitle1"
-            align="center"
-          >
-            <PhoneIcon className={classes.avatar} fontSize="small" />
-            +306999999999
-          </Typography>{" "}
-          <Typography
-            className={classes.text}
-            color="textSecondary"
-            variant="subtitle1"
-            align="center"
-          >
-            <LocationOnIcon className={classes.avatar} fontSize="small" />
-            Florina, Greece
-          </Typography>{" "}
-        </CardContent>
-      </Card>
-    </div>
+    <Card
+      variant="outlined"
+      className={classes.card}
+      style={{ display: "inline-block" }}
+    >
+      <CardMedia align="center">
+        <Avatar
+          alt="Remy Sharp"
+          src="/static/images/avatar/1.jpg"
+          className={classes.large}
+        />
+      </CardMedia>
+      <CardContent className={classes.cardContent}>
+        <Typography
+          className={classes.text}
+          color="textSecondary"
+          variant="h6"
+          align="center"
+        >
+          firstName lastName
+        </Typography>
+        <Typography
+          className={classes.text}
+          color="textSecondary"
+          variant="subtitle1"
+          align="center"
+        >
+          <AlternateEmailIcon className={classes.avatar} fontSize="small" />
+          example@example.com
+        </Typography>{" "}
+        <Typography
+          className={classes.text}
+          color="textSecondary"
+          variant="subtitle1"
+          align="center"
+        >
+          <PhoneIcon className={classes.avatar} fontSize="small" />
+          +306999999999
+        </Typography>{" "}
+        <Typography
+          className={classes.text}
+          color="textSecondary"
+          variant="subtitle1"
+          align="center"
+        >
+          <LocationOnIcon className={classes.avatar} fontSize="small" />
+          Florina, Greece
+        </Typography>{" "}
+      </CardContent>
+    </Card>
   );
 }
