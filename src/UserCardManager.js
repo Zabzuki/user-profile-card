@@ -67,7 +67,7 @@ export default function UserCardManager(props) {
               User Card{" "}
             </Typography>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs="auto">
             <Arrow
               direction="left"
               clickFunction={() => onArrowClick("left")}
@@ -82,23 +82,21 @@ export default function UserCardManager(props) {
               justify="center"
             >
               <Grid item>
-                <Hidden xsDown>
-                  <UserCard content={{ title: "Slide 1" }} content={content} />
-                </Hidden>
+                <UserCard content={{ title: "Slide 1" }} content={content} />
               </Grid>
-              <Grid item>
-                <Hidden smDown>
+              <Hidden xsDown>
+                <Grid item>
                   <UserCard content={{ title: "Slide 1" }} content={content} />
-                </Hidden>
-              </Grid>
-              <Grid item>
-                <Hidden mdDown>
+                </Grid>
+              </Hidden>
+              <Hidden smDown>
+                <Grid item>
                   <UserCard content={{ title: "Slide 1" }} content={content} />
-                </Hidden>
-              </Grid>
+                </Grid>
+              </Hidden>
             </Grid>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs="auto">
             <Arrow
               direction="right"
               clickFunction={() => onArrowClick("right")}
