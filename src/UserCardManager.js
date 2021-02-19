@@ -1,9 +1,17 @@
-import React, { useState } from "react";
-import { Typography, Paper, makeStyles, Grid, Hidden } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import {
+  Typography,
+  Paper,
+  makeStyles,
+  Grid,
+  Hidden,
+  Box,
+} from "@material-ui/core";
 import { SLIDE_INFO } from "./constants";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import UserCard from "./UserCard";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Arrow(props) {
   const { direction, clickFunction } = props;
@@ -13,22 +21,9 @@ function Arrow(props) {
   return <div onClick={clickFunction}>{icon}</div>;
 }
 
-const getData = () => {
-  fetch("https://randomuser.me/api/")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      renderCategories(data);
-      results = data;
-      console.log(data);
-    })
-    .catch((error) => console.log(error));
-};
-
 export default function UserCardManager(props) {
   //const { backgroundColor, title } = props.content;
-  //const [users, setUsers];
+  const [users, setUsers] = useState("");
   //const content = SLIDE_INFO[3];
   const [index, setIndex] = useState(0);
   const content = SLIDE_INFO[index];
@@ -40,6 +35,22 @@ export default function UserCardManager(props) {
     setIndex(newIndex);
   };
 
+  useEffect(() => {
+    //const getData = () => {
+    fetch("https://randomuser.me/api/")
+      .then((response) => {
+        return () => {
+          response.json();
+        };
+      })
+      .then((data) => {
+        setUsers(data.results);
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+    //};
+  }, []);
+
   const useStyles = makeStyles(() => ({
     paper: {
       display: "flex",
@@ -47,14 +58,17 @@ export default function UserCardManager(props) {
     },
     grid: {
       width: "auto",
-      //margin: -12,
     },
+    // arrow: {
+    //   padding: "5px",
+    // },
   }));
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <Paper variant="outlined" className={classes.paper}>
+        {/* {users && users.length ? ( */}
         <Grid
           container
           spacing={2}
@@ -67,8 +81,10 @@ export default function UserCardManager(props) {
               User Card{" "}
             </Typography>
           </Grid>
+          {/* <Box display="flex" alignItems="center"> */}
           <Grid item xs="auto">
             <Arrow
+              className="arrow"
               direction="left"
               clickFunction={() => onArrowClick("left")}
             />
@@ -98,11 +114,16 @@ export default function UserCardManager(props) {
           </Grid>
           <Grid item xs="auto">
             <Arrow
+              className="arrow"
               direction="right"
               clickFunction={() => onArrowClick("right")}
             />
           </Grid>
+          {/* </Box> */}
         </Grid>
+        {/* ) : (
+          <CircularProgress />
+        )} */}
       </Paper>
     </React.Fragment>
   );
