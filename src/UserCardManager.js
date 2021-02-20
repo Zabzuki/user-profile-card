@@ -22,11 +22,10 @@ function Arrow(props) {
 }
 
 export default function UserCardManager(props) {
-  //const { backgroundColor, title } = props.content;
+  //const UserCardManager = () => {
   const [users, setUsers] = useState("");
-  //const content = SLIDE_INFO[3];
   const [index, setIndex] = useState(0);
-  const content = SLIDE_INFO[index];
+  //const content = SLIDE_INFO[index];
   const numSlides = SLIDE_INFO.length;
 
   const onArrowClick = (direction) => {
@@ -36,18 +35,12 @@ export default function UserCardManager(props) {
   };
 
   useEffect(() => {
-    //const getData = () => {
-    fetch("https://randomuser.me/api/")
-      .then((response) => {
-        return () => {
-          response.json();
-        };
-      })
-      .then((data) => {
-        setUsers(data.results);
-        console.log(data);
-      })
-      .catch((error) => console.log(error));
+    fetch("https://randomuser.me/api?results=100")
+      .then((res) => res.json())
+      .then((body) => {
+        console.log(body);
+        setUsers(body.results);
+      });
     //};
   }, []);
 
@@ -68,63 +61,79 @@ export default function UserCardManager(props) {
   return (
     <React.Fragment>
       <Paper variant="outlined" className={classes.paper}>
-        {/* {users && users.length ? ( */}
-        <Grid
-          container
-          spacing={2}
-          className={classes.grid}
-          alignItems="center"
-          justify="center"
-        >
-          <Grid item xs={12}>
-            <Typography variant="h4" component="h1" gutterBottom align="center">
-              User Card{" "}
-            </Typography>
-          </Grid>
-          {/* <Box display="flex" alignItems="center"> */}
-          <Grid item xs="auto">
-            <Arrow
-              className="arrow"
-              direction="left"
-              clickFunction={() => onArrowClick("left")}
-            />
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              spacing={2}
-              className={classes.grid}
-              alignItems="center"
-              justify="center"
-            >
-              <Grid item>
-                <UserCard content={{ title: "Slide 1" }} content={content} />
-              </Grid>
-              <Hidden xsDown>
-                <Grid item>
-                  <UserCard content={{ title: "Slide 1" }} content={content} />
-                </Grid>
-              </Hidden>
-              <Hidden smDown>
-                <Grid item>
-                  <UserCard content={{ title: "Slide 1" }} content={content} />
-                </Grid>
-              </Hidden>
+        {users && users.length ? (
+          <Grid
+            container
+            spacing={2}
+            className={classes.grid}
+            alignItems="center"
+            justify="center"
+          >
+            <Grid item xs={12}>
+              <Typography
+                variant="h4"
+                component="h1"
+                gutterBottom
+                align="center"
+              >
+                User Card{" "}
+              </Typography>
             </Grid>
+            <Box display="flex" alignItems="center">
+              <Grid item xs="auto">
+                <Arrow
+                  className="arrow"
+                  direction="left"
+                  clickFunction={() => onArrowClick("left")}
+                />
+              </Grid>
+              <Grid item>
+                <Grid
+                  container
+                  spacing={2}
+                  className={classes.grid}
+                  alignItems="center"
+                  justify="center"
+                >
+                  <Grid item xs="auto">
+                    <UserCard
+                      content={{ title: "Slide 1" }}
+                      content={users[index]}
+                    />
+                  </Grid>
+                  <Hidden xsDown>
+                    <Grid item xs="auto">
+                      <UserCard
+                        content={{ title: "Slide 1" }}
+                        content={users[index + 1]}
+                      />
+                    </Grid>
+                  </Hidden>
+                  <Hidden smDown>
+                    <Grid item xs="auto">
+                      <UserCard
+                        content={{ title: "Slide 1" }}
+                        content={users[index + 2]}
+                      />
+                    </Grid>
+                  </Hidden>
+                </Grid>
+              </Grid>
+              <Grid item xs="auto">
+                <Arrow
+                  className="arrow"
+                  direction="right"
+                  clickFunction={() => onArrowClick("right")}
+                />
+              </Grid>
+            </Box>
           </Grid>
-          <Grid item xs="auto">
-            <Arrow
-              className="arrow"
-              direction="right"
-              clickFunction={() => onArrowClick("right")}
-            />
-          </Grid>
-          {/* </Box> */}
-        </Grid>
-        {/* ) : (
+        ) : (
           <CircularProgress />
-        )} */}
+        )}
       </Paper>
     </React.Fragment>
   );
 }
+
+//export default UserCardManager();

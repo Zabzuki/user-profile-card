@@ -11,6 +11,7 @@ import {
 import PhoneIcon from "@material-ui/icons/Phone";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import { ContactPhoneTwoTone } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UserCard() {
+export default function UserCard(props) {
   const classes = useStyles();
 
   return (
@@ -45,7 +46,7 @@ export default function UserCard() {
       <CardMedia align="center">
         <Avatar
           alt="Remy Sharp"
-          src="/static/images/avatar/1.jpg"
+          src={props.content.picture.large}
           className={classes.large}
         />
       </CardMedia>
@@ -56,7 +57,7 @@ export default function UserCard() {
           variant="h6"
           align="center"
         >
-          firstName lastName
+          {props.content.name.first} {props.content.name.last}
         </Typography>
         <Typography
           className={classes.text}
@@ -65,7 +66,7 @@ export default function UserCard() {
           align="center"
         >
           <AlternateEmailIcon className={classes.avatar} fontSize="small" />
-          example@example.com
+          {props.content.email}
         </Typography>{" "}
         <Typography
           className={classes.text}
@@ -74,7 +75,7 @@ export default function UserCard() {
           align="center"
         >
           <PhoneIcon className={classes.avatar} fontSize="small" />
-          +306999999999
+          {props.content.cell}
         </Typography>{" "}
         <Typography
           className={classes.text}
@@ -83,7 +84,7 @@ export default function UserCard() {
           align="center"
         >
           <LocationOnIcon className={classes.avatar} fontSize="small" />
-          Florina, Greece
+          {props.content.location.city}, {props.content.location.country}
         </Typography>{" "}
       </CardContent>
     </Card>
