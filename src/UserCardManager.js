@@ -7,44 +7,57 @@ import {
   Hidden,
   Box,
 } from "@material-ui/core";
-import { SLIDE_INFO } from "./constants";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import UserCard from "./UserCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Arrow(props) {
-  const { direction, clickFunction } = props;
+  const { direction, clickFunction, disabled } = props;
   const icon =
-    direction === "left" ? <ArrowBackIosIcon /> : <ArrowForwardIosIcon />;
+    direction === "left" ? (
+      <ArrowBackIosIcon color={disabled} />
+    ) : (
+      <ArrowForwardIosIcon />
+    );
 
   return <div onClick={clickFunction}>{icon}</div>;
 }
 
-export default function UserCardManager(props) {
-  //const UserCardManager = () => {
-  const [users, setUsers] = useState("");
+export default function UserCardManager() {
+  const [users, setUsers] = useState([]);
   const [index, setIndex] = useState(0);
-  //const content = SLIDE_INFO[index];
-  const numSlides = SLIDE_INFO.length;
-
   const onArrowClick = (direction) => {
     const increment = direction === "left" ? -1 : 1;
-    const newIndex = (index + increment + numSlides) % numSlides;
+    const numUsers = users.length;
+
+    if (direction === "left" && index === 0) {
+      return;
+    }
+
+    if (index >= numUsers - 4) {
+      fetchUsers();
+    }
+
+    const newIndex = index != numUsers ? index + increment : index;
     setIndex(newIndex);
   };
 
-  useEffect(() => {
-    fetch("https://randomuser.me/api?results=100")
+  const fetchUsers = () => {
+    fetch("https://randomuser.me/api?results=20")
       .then((res) => res.json())
       .then((body) => {
         console.log(body);
-        setUsers(body.results);
+        setUsers((previousUsers) => {
+          return [...previousUsers, ...body.results];
+        });
       });
-    //};
+  };
+  useEffect(() => {
+    fetchUsers();
   }, []);
 
-  const useStyles = makeStyles(() => ({
+  const useStyles = makeStyles((theme) => ({
     paper: {
       display: "flex",
       width: "auto",
@@ -52,9 +65,12 @@ export default function UserCardManager(props) {
     grid: {
       width: "auto",
     },
-    // arrow: {
-    //   padding: "5px",
-    // },
+    arrow: {
+      padding: theme.spacing(3),
+    },
+    box: {
+      padding: theme.spacing(3),
+    },
   }));
   const classes = useStyles();
 
@@ -79,13 +95,20 @@ export default function UserCardManager(props) {
                 User Card{" "}
               </Typography>
             </Grid>
-            <Box display="flex" alignItems="center">
-              <Grid item xs="auto">
-                <Arrow
-                  className="arrow"
-                  direction="left"
-                  clickFunction={() => onArrowClick("left")}
-                />
+            <Box display="flex" alignItems="center" className={classes.box}>
+              <Grid item xs="auto" className={classes.arrow}>
+                {index > 0 ? (
+                  <Arrow
+                    direction="left"
+                    clickFunction={() => onArrowClick("left")}
+                  />
+                ) : (
+                  <Arrow
+                    direction="left"
+                    clickFunction={() => onArrowClick("left")}
+                    disabled={"disabled"}
+                  />
+                )}
               </Grid>
               <Grid item>
                 <Grid
@@ -94,34 +117,27 @@ export default function UserCardManager(props) {
                   className={classes.grid}
                   alignItems="center"
                   justify="center"
+                  //width="max-content"
+                  //display="flex"
+                  //direction="column"
                 >
                   <Grid item xs="auto">
-                    <UserCard
-                      content={{ title: "Slide 1" }}
-                      content={users[index]}
-                    />
+                    <UserCard content={users[index]} />
                   </Grid>
                   <Hidden xsDown>
                     <Grid item xs="auto">
-                      <UserCard
-                        content={{ title: "Slide 1" }}
-                        content={users[index + 1]}
-                      />
+                      <UserCard content={users[index + 1]} />
                     </Grid>
                   </Hidden>
                   <Hidden smDown>
                     <Grid item xs="auto">
-                      <UserCard
-                        content={{ title: "Slide 1" }}
-                        content={users[index + 2]}
-                      />
+                      <UserCard content={users[index + 2]} />
                     </Grid>
                   </Hidden>
                 </Grid>
               </Grid>
-              <Grid item xs="auto">
+              <Grid item xs="auto" className={classes.arrow}>
                 <Arrow
-                  className="arrow"
                   direction="right"
                   clickFunction={() => onArrowClick("right")}
                 />
@@ -135,5 +151,3 @@ export default function UserCardManager(props) {
     </React.Fragment>
   );
 }
-
-//export default UserCardManager();

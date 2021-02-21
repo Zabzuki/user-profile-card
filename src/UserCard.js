@@ -6,12 +6,10 @@ import {
   CardMedia,
   Avatar,
   Typography,
-  Box,
 } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import { ContactPhoneTwoTone } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -28,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     borderRadius: 15,
+    width: "280px",
+    height: "300px",
   },
   cardContent: {
     padding: theme.spacing(2, 2, 0, 2),
@@ -46,7 +46,7 @@ export default function UserCard(props) {
       <CardMedia align="center">
         <Avatar
           alt="Remy Sharp"
-          src={props.content.picture.large}
+          src={props?.content?.picture?.large}
           className={classes.large}
         />
       </CardMedia>
@@ -57,7 +57,7 @@ export default function UserCard(props) {
           variant="h6"
           align="center"
         >
-          {props.content.name.first} {props.content.name.last}
+          {props?.content?.name?.first} {props?.content?.name?.last}
         </Typography>
         <Typography
           className={classes.text}
@@ -66,7 +66,7 @@ export default function UserCard(props) {
           align="center"
         >
           <AlternateEmailIcon className={classes.avatar} fontSize="small" />
-          {props.content.email}
+          {props?.content?.email}
         </Typography>{" "}
         <Typography
           className={classes.text}
@@ -75,7 +75,7 @@ export default function UserCard(props) {
           align="center"
         >
           <PhoneIcon className={classes.avatar} fontSize="small" />
-          {props.content.cell}
+          {props?.content?.cell}
         </Typography>{" "}
         <Typography
           className={classes.text}
@@ -84,7 +84,7 @@ export default function UserCard(props) {
           align="center"
         >
           <LocationOnIcon className={classes.avatar} fontSize="small" />
-          {props.content.location.city}, {props.content.location.country}
+          {props?.content?.location?.city}, {props?.content?.location?.country}
         </Typography>{" "}
       </CardContent>
     </Card>
