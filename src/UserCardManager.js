@@ -11,6 +11,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import UserCard from "./UserCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import ColorPicker from "./ColorPicker";
 
 function Arrow(props) {
   const { direction, clickFunction, disabled } = props;
@@ -85,7 +86,7 @@ export default function UserCardManager() {
             alignItems="center"
             justify="center"
           >
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <Typography
                 variant="h4"
                 component="h1"
@@ -94,6 +95,9 @@ export default function UserCardManager() {
               >
                 User Card{" "}
               </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <ColorPicker />
             </Grid>
             <Box display="flex" alignItems="center" className={classes.box}>
               <Grid item xs="auto" className={classes.arrow}>
