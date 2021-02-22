@@ -86,7 +86,7 @@ export default function UserCardManager() {
             alignItems="center"
             justify="center"
           >
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <Typography
                 variant="h4"
                 component="h1"
@@ -95,8 +95,8 @@ export default function UserCardManager() {
               >
                 User Card{" "}
               </Typography>
-            </Grid>
-            <Grid item xs={6}>
+            </Grid> */}
+            <Grid item>
               <ColorPicker />
             </Grid>
             <Box display="flex" alignItems="center" className={classes.box}>
