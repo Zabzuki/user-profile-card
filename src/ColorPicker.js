@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from "react";
 import { TextField, makeStyles, Box } from "@material-ui/core";
-import React from "react";
 import useLocalStorage from "react-use-localstorage";
 
 export default function ColorPicker() {
@@ -12,12 +12,27 @@ export default function ColorPicker() {
   }));
   const classes = useStyles();
 
+  const setBackgroundColor = () => {
+    console.log(color);
+    document.body.style.setProperty("background-color", color);
+  };
+
+  useEffect(() => {
+    //let color = localStorage.getItem("color");
+    //setColor(color);
+    setBackgroundColor();
+  }, [color]);
+
   return (
     <Box className={classes.box}>
       <TextField
         placeholder="Enter color"
         variant="outlined"
-        onChange={setColor}
+        onChange={(event) => {
+          console.log(event.target.value);
+          setColor(event.target.value);
+          setBackgroundColor();
+        }}
       />
     </Box>
   );
