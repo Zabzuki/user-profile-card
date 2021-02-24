@@ -22,7 +22,7 @@ function Arrow(props) {
       <ArrowForwardIosIcon />
     );
 
-  return <div onClick={clickFunction}>{icon}</div>;
+  return <Box onClick={clickFunction}>{icon}</Box>;
 }
 
 export default function UserCardManager() {
@@ -69,9 +69,10 @@ export default function UserCardManager() {
     arrow: {
       padding: theme.spacing(3),
     },
-    box: {
-      padding: theme.spacing(3),
-    },
+    // containedGrid: {
+    //   width: "auto",
+    //   padding: theme.spacing(3),
+    // },
   }));
   const classes = useStyles();
 
@@ -85,8 +86,9 @@ export default function UserCardManager() {
             className={classes.grid}
             alignItems="center"
             justify="center"
+            direction="row"
           >
-            {/* <Grid item xs={6}>
+            <Grid item xs={12}>
               <Typography
                 variant="h4"
                 component="h1"
@@ -95,58 +97,65 @@ export default function UserCardManager() {
               >
                 User Card{" "}
               </Typography>
-            </Grid> */}
-            <Grid item>
               <ColorPicker />
             </Grid>
-            <Box display="flex" alignItems="center" className={classes.box}>
-              <Grid item xs="auto" className={classes.arrow}>
-                {index > 0 ? (
-                  <Arrow
-                    direction="left"
-                    clickFunction={() => onArrowClick("left")}
-                  />
-                ) : (
-                  <Arrow
-                    direction="left"
-                    clickFunction={() => onArrowClick("left")}
-                    disabled={"disabled"}
-                  />
-                )}
-              </Grid>
-              <Grid item>
-                <Grid
-                  container
-                  spacing={2}
-                  className={classes.grid}
+            <Grid item xs={12}>
+              <Grid
+                container
+                spacing={2}
+                alignItems="center"
+                justify="center"
+                width="max-content"
+                display="flex"
+                direction="row"
+              >
+                {/* <Box
+                  display="flex"
                   alignItems="center"
-                  justify="center"
-                  //width="max-content"
-                  //display="flex"
-                  //direction="column"
-                >
-                  <Grid item xs="auto">
-                    <UserCard content={users[index]} />
+                  className={classes.box}
+                  //m={1}
+                > */}
+                <Grid item>
+                  <Arrow
+                    direction="left"
+                    clickFunction={() => onArrowClick("left")}
+                    disabled={index > 0 ? "" : "disabled"}
+                  />
+                </Grid>
+                <Grid item width="auto">
+                  <Grid
+                    container
+                    spacing={2}
+                    className={classes.grid}
+                    alignItems="center"
+                    justify="center"
+                    width="max-content"
+                    display="flex"
+                    direction="row"
+                  >
+                    <Grid item xs="auto">
+                      <UserCard content={users[index]} />
+                    </Grid>
+                    <Hidden xsDown>
+                      <Grid item xs="auto">
+                        <UserCard content={users[index + 1]} />
+                      </Grid>
+                    </Hidden>
+                    <Hidden smDown>
+                      <Grid item xs="auto">
+                        <UserCard content={users[index + 2]} />
+                      </Grid>
+                    </Hidden>
                   </Grid>
-                  <Hidden xsDown>
-                    <Grid item xs="auto">
-                      <UserCard content={users[index + 1]} />
-                    </Grid>
-                  </Hidden>
-                  <Hidden smDown>
-                    <Grid item xs="auto">
-                      <UserCard content={users[index + 2]} />
-                    </Grid>
-                  </Hidden>
+                </Grid>
+                <Grid item>
+                  <Arrow
+                    direction="right"
+                    clickFunction={() => onArrowClick("right")}
+                  />
                 </Grid>
               </Grid>
-              <Grid item xs="auto" className={classes.arrow}>
-                <Arrow
-                  direction="right"
-                  clickFunction={() => onArrowClick("right")}
-                />
-              </Grid>
-            </Box>
+            </Grid>
           </Grid>
         ) : (
           <CircularProgress />

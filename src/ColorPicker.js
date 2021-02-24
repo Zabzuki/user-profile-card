@@ -18,8 +18,6 @@ export default function ColorPicker() {
   };
 
   useEffect(() => {
-    //let color = localStorage.getItem("color");
-    //setColor(color);
     setBackgroundColor();
   }, [color]);
 
