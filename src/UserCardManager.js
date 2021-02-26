@@ -48,10 +48,13 @@ export default function UserCardManager() {
     fetch("https://randomuser.me/api?results=20")
       .then((res) => res.json())
       .then((body) => {
-        console.log(body);
+        //console.log(body);
         setUsers((previousUsers) => {
           return [...previousUsers, ...body.results];
         });
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
   useEffect(() => {
@@ -66,13 +69,15 @@ export default function UserCardManager() {
     grid: {
       width: "auto",
     },
-    arrow: {
-      padding: theme.spacing(3),
+    arrowRight: {
+      padding: theme.spacing(0, 1.5, 0, 1),
     },
-    // containedGrid: {
-    //   width: "auto",
-    //   padding: theme.spacing(3),
-    // },
+    arrowLeft: {
+      padding: theme.spacing(0, 1, 0, 2),
+    },
+    box: {
+      paddingBottom: theme.spacing(5),
+    },
   }));
   const classes = useStyles();
 
@@ -109,51 +114,48 @@ export default function UserCardManager() {
                 display="flex"
                 direction="row"
               >
-                {/* <Box
-                  display="flex"
-                  alignItems="center"
-                  className={classes.box}
-                  //m={1}
-                > */}
-                <Grid item>
-                  <Arrow
-                    direction="left"
-                    clickFunction={() => onArrowClick("left")}
-                    disabled={index > 0 ? "" : "disabled"}
-                  />
-                </Grid>
-                <Grid item width="auto">
-                  <Grid
-                    container
-                    spacing={2}
-                    className={classes.grid}
-                    alignItems="center"
-                    justify="center"
-                    width="max-content"
-                    display="flex"
-                    direction="row"
-                  >
-                    <Grid item xs="auto">
-                      <UserCard content={users[index]} />
-                    </Grid>
-                    <Hidden xsDown>
-                      <Grid item xs="auto">
-                        <UserCard content={users[index + 1]} />
-                      </Grid>
-                    </Hidden>
-                    <Hidden smDown>
-                      <Grid item xs="auto">
-                        <UserCard content={users[index + 2]} />
-                      </Grid>
-                    </Hidden>
+                <Box display="flex" alignItems="center" className={classes.box}>
+                  <Grid item className={classes.arrowLeft}>
+                    <Arrow
+                      direction="left"
+                      clickFunction={() => onArrowClick("left")}
+                      disabled={index > 0 ? "" : "disabled"}
+                    />
                   </Grid>
-                </Grid>
-                <Grid item>
-                  <Arrow
-                    direction="right"
-                    clickFunction={() => onArrowClick("right")}
-                  />
-                </Grid>
+                  <Grid item width="auto">
+                    <Grid
+                      container
+                      spacing={2}
+                      className={classes.grid}
+                      alignItems="center"
+                      justify="center"
+                      width="max-content"
+                      display="flex"
+                      direction="row"
+                      wrap="nowrap"
+                    >
+                      <Grid item xs="auto">
+                        <UserCard content={users[index]} />
+                      </Grid>
+                      <Hidden xsDown>
+                        <Grid item xs="auto">
+                          <UserCard content={users[index + 1]} />
+                        </Grid>
+                      </Hidden>
+                      <Hidden smDown>
+                        <Grid item xs="auto">
+                          <UserCard content={users[index + 2]} />
+                        </Grid>
+                      </Hidden>
+                    </Grid>
+                  </Grid>
+                  <Grid item className={classes.arrowRight}>
+                    <Arrow
+                      direction="right"
+                      clickFunction={() => onArrowClick("right")}
+                    />
+                  </Grid>
+                </Box>
               </Grid>
             </Grid>
           </Grid>

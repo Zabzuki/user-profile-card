@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     verticalAlign: "middle",
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(0.5),
   },
   large: {
     width: theme.spacing(12),
@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     borderRadius: 15,
-    maxWidth: "250px",
-    minWidth: "250px",
+    maxWidth: "270px",
+    minWidth: "270px",
     height: "330px",
   },
   cardContent: {
-    padding: theme.spacing(2, 2, 0, 2),
+    padding: theme.spacing(2, 0, 0, 0),
   },
 }));
 
