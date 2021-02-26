@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 15,
     maxWidth: "250px",
     minWidth: "250px",
-    height: "300px",
+    height: "330px",
   },
   cardContent: {
     padding: theme.spacing(2, 2, 0, 2),
