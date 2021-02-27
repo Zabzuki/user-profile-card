@@ -12,6 +12,7 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import UserCard from "./UserCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ColorPicker from "./ColorPicker";
+import Error from "./Error";
 
 function Arrow(props) {
   const { direction, clickFunction, disabled } = props;
@@ -28,6 +29,7 @@ function Arrow(props) {
 export default function UserCardManager() {
   const [users, setUsers] = useState([]);
   const [index, setIndex] = useState(0);
+  const [error, setError] = useState(false);
   const onArrowClick = (direction) => {
     const increment = direction === "left" ? -1 : 1;
     const numUsers = users.length;
@@ -54,6 +56,7 @@ export default function UserCardManager() {
         });
       })
       .catch((error) => {
+        setError(true);
         console.error(error);
       });
   };
@@ -159,8 +162,10 @@ export default function UserCardManager() {
               </Grid>
             </Grid>
           </Grid>
+        ) : setError ? (
+          <Error />
         ) : (
-          <CircularProgress />
+          <CircularProgress data-testid="spinner" />
         )}
       </Paper>
     </React.Fragment>

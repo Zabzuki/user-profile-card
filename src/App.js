@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, makeStyles, Container, ThemeProvider } from "@material-ui/core";
+import { Box, makeStyles, Container } from "@material-ui/core";
 import UserCardManager from "./UserCardManager";
 
 const useStyles = makeStyles(() => ({

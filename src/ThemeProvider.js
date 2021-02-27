@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MuiThemeProvider } from "@material-ui/core";
 import theme from "./theme";
 
-export const ThemeContext = React.createContext(() => {});
+export const ThemeContext = React.createContext(theme);
 
 const ThemeProvider = (props) => {
   // State to hold the new background color
