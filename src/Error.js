@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, makeStyles } from "@material-ui/core";
+import { Typography, makeStyles, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -12,8 +12,9 @@ export default function Error() {
   const classes = useStyles();
 
   return (
-    <div>
+    <Box>
       <Typography
+        data-testid="error"
         color="textSecondary"
         variant="subtitle1"
         align="center"
@@ -22,6 +23,6 @@ export default function Error() {
       >
         An error occured. We cannot fetch the results
       </Typography>
-    </div>
+    </Box>
   );
 }

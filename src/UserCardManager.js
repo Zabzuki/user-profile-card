@@ -50,14 +50,12 @@ export default function UserCardManager() {
     fetch("https://randomuser.me/api?results=20")
       .then((res) => res.json())
       .then((body) => {
-        //console.log(body);
         setUsers((previousUsers) => {
           return [...previousUsers, ...body.results];
         });
       })
       .catch((error) => {
         setError(true);
-        console.error(error);
       });
   };
   useEffect(() => {
@@ -137,7 +135,7 @@ export default function UserCardManager() {
                       direction="row"
                       wrap="nowrap"
                     >
-                      <Grid item xs="auto">
+                      <Grid item xs="auto" data-testid="user">
                         <UserCard content={users[index]} />
                       </Grid>
                       <Hidden xsDown>
@@ -162,7 +160,7 @@ export default function UserCardManager() {
               </Grid>
             </Grid>
           </Grid>
-        ) : setError ? (
+        ) : error ? (
           <Error />
         ) : (
           <CircularProgress data-testid="spinner" />
