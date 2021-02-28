@@ -14,6 +14,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 const useStyles = makeStyles((theme) => ({
   text: {
     margin: theme.spacing(0, 0, 0.5),
+    //color: theme.palette.secondary.contrastText,
   },
   avatar: {
     verticalAlign: "middle",
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "270px",
     minWidth: "270px",
     height: "330px",
+    backgroundColor: theme.palette.background.card,
   },
   cardContent: {
     padding: theme.spacing(2, 0, 0, 0),

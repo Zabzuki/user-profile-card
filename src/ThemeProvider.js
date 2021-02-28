@@ -13,7 +13,7 @@ const ThemeProvider = (props) => {
     palette: {
       ...theme.palette,
       background: {
-        default: color,
+        card: color,
       },
     },
   };
