@@ -78,7 +78,7 @@ let newTheme = {
   palette: {
     ...theme.palette,
     background: {
-        card: color,
+      card: color,
     },
   },
 };
@@ -132,7 +132,7 @@ In this project there are also contained some basic testing files and more speci
     const { getByTestId } = rendered;
     const spinner = getByTestId("spinner");
 
-      expect(spinner).toBeInTheDocument();
+    expect(spinner).toBeInTheDocument();
     ```
 
     after rendering the `UserCardManager`, that's how we use the id inside the method and expect to see spinner in the document.
@@ -201,3 +201,25 @@ In this project there are also contained some basic testing files and more speci
     ```
 
     after rendering the `UserCardManager`, the `getByTestId` checks if the error returned correctly and is expected `toBeInTheDocument`.
+
+## Useful Links
+
+- [ReactJS Documentation](https://reactjs.org/docs/create-a-new-react-app.html)
+
+- [Material-UI Documentation](https://material-ui.com/getting-started/installation/)
+
+- [Adding Transitions to a React Carousel with Material-UI](https://levelup.gitconnected.com/adding-transitions-to-a-react-carousel-with-material-ui-b95825653c1b)
+
+- [Using Fetch method](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+
+- [HTML Color Picker](https://www.w3schools.com/colors/colors_picker.asp)
+
+- [Theming Material-UI](https://material-ui.com/customization/theming/)
+
+- [Change root background color with Material-UI theme](https://stackoverflow.com/questions/59145165/change-root-background-color-with-material-ui-theme)
+
+- [Testing Recipes ReactJS Documentation](https://reactjs.org/docs/testing-recipes.html#data-fetching)
+
+- [Running Tests - Create React App](https://create-react-app.dev/docs/running-tests/)
+
+- [About Queries - Testing Library](https://testing-library.com/docs/queries/about/)
