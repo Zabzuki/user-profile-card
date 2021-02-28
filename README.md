@@ -1,6 +1,6 @@
 # User Profile Card
 
-## How to install
+## How to install and run
 
 1. Download the example [or clone the repo](https://github.com/Zabzuki/user-profile-card.git)
 
@@ -36,7 +36,6 @@ const fetchUsers = () => {
   fetch("https://randomuser.me/api?results=20")
     .then((res) => res.json())
     .then((body) => {
-      //console.log(body);
       setUsers((previousUsers) => {
         return [...previousUsers, ...body.results];
       });
@@ -62,11 +61,13 @@ if (index >= numUsers - 4) {
 ```
 
 If fetch fails, the `<Error />` component will be rendered.
+
 ![](images/error.png)
 
 ## Background color
 
 The background color can be changed by adding a HEX code or just a color name e.g 'red','purple' in to the `<TextField>`, which is also stored in Local Storage so when the page is refreshed the color will still be the selected one.
+
 ![](gifs/localStorage.gif)
 
 In `index.js` the children components are wrapped with `<ThemeProvider>` which is customising the theme content. In `theme.js` is created the `MuiThemeProvider` which is used in `ThemeProvider`.
@@ -77,7 +78,7 @@ let newTheme = {
   palette: {
     ...theme.palette,
     background: {
-      default: color,
+        card: color,
     },
   },
 };
