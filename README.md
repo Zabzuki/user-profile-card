@@ -24,7 +24,7 @@ user-profile-card displays users that are fetched from [Randomuser.me API](https
 The app consists of three main components.
 
 1. `UserCardManager` is the main parent component that is fetching batched users from random user API and returns 20 users. The new API call will get place -4 users before the end of the array.
-2. `UserCard` displays the user informations (full name, email, phone, location).
+2. `UserCard` displays the user's information like name, email, phone etc.
 3. `ColorPicker` is a text field that updates the background color based on the input value. This value also persists across sessions by saving the value in the local storage.
 
 ## Fetch data
@@ -49,7 +49,7 @@ useEffect(() => {
 }, []);
 ```
 
-it will be recalled -4 users before the end of the fetched users array.
+users array needs to keep the already existing users and adding at the end of the array the 20 new and that's what happens in `setUsers`. When the user press the right arrow to see the new users, then `fetchUsers` will be recalled -4 users before the end of the already existing users in the array (`array.length - 4`).
 
 ```JavaScript
 const [index, setIndex] = useState(0);
@@ -95,8 +95,8 @@ return (
 );
 ```
 
-with `theme={newTheme}` the color is updated (by changing the default background color). The update procedure take place from the `setBackgroundColor` callback which store value to Local Storage and calls the `setColor`.
-By adding React Context in `ThemeProvider.js` the props are available in any component
+with `theme={newTheme}` the color is updated (by changing the default background card's color). The update procedure takes place from the `setBackgroundColor` callback which store value to Local Storage and calls the `setColor`.
+By adding React Context in `ThemeProvider.js` we can access it in the child components through the React Context using the useContext hook.
 
 ```JavaScript
 const ThemeContext = React.createContext(theme);
@@ -118,7 +118,7 @@ In this project there are also contained some basic testing files and more speci
   beforeAll(() => jest.spyOn(window, "fetch"));
   ```
 
-  that's how we keep tracking the fetch process.
+  that's how we spy the window fetch process.
 
   - `<CircularProgress />` testing (spinner):
 
@@ -215,6 +215,8 @@ In this project there are also contained some basic testing files and more speci
 - [HTML Color Picker](https://www.w3schools.com/colors/colors_picker.asp)
 
 - [Theming Material-UI](https://material-ui.com/customization/theming/)
+
+- [Building React App using Material UI with Support for Multiple Switchable Themes](https://techinscribed.com/building-react-app-using-material-ui-with-support-for-multiple-switchable-themes/)
 
 - [Change root background color with Material-UI theme](https://stackoverflow.com/questions/59145165/change-root-background-color-with-material-ui-theme)
 
