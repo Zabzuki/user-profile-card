@@ -1,5 +1,18 @@
 # User Profile Card
 
+A responsive React + Material-UI app that fetches random users from the
+[Randomuser.me API](https://randomuser.me/) and shows them as cards, with a
+customizable, persisted background color.
+
+## Features
+
+- Fetches users in batches of 20 and loads more as you browse (no manual paging).
+- Responsive card layout, mobile included.
+- Set the card background by HEX code or color name; the choice persists across
+  refreshes via Local Storage.
+- Renders an `<Error />` fallback if the API call fails.
+- No API key required.
+
 ## How to install and run
 
 1. Download the example [or clone the repo](https://github.com/Zabzuki/user-profile-card.git)
