@@ -13,6 +13,8 @@ customizable, persisted background color.
 - Renders an `<Error />` fallback if the API call fails.
 - No API key required.
 
+![User card demo](docs/media/user-profile-card-demo.gif)
+
 ## How to install and run
 
 1. Download the example [or clone the repo](https://github.com/Zabzuki/user-profile-card.git)
