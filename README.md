@@ -242,3 +242,7 @@ In this project there are also contained some basic testing files and more speci
 - [Running Tests - Create React App](https://create-react-app.dev/docs/running-tests/)
 
 - [About Queries - Testing Library](https://testing-library.com/docs/queries/about/)
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file.
